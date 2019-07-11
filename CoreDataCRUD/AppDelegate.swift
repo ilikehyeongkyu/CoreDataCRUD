@@ -7,12 +7,23 @@
 //
 
 import UIKit
+import CoreData
+
+let persistentContainer: NSPersistentContainer = {
+    let container = NSPersistentContainer(name: "Model")
+    container.loadPersistentStores(completionHandler: { (persistentStoreDescription, error) in
+        if let error = error {
+            print("WTF! error = \(error)")
+        }
+    })
+    
+    return container
+}()
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
